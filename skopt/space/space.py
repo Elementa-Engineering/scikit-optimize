@@ -633,10 +633,10 @@ class Categorical(Dimension):
 
         """
         self.transform_ = transform
-        if transform not in ["identity", "onehot", "string", "normalize", "normalize_unbounded"
+        if transform not in ["identity", "onehot", "string", "normalize", "normalize_unbounded",
                              "label"]:
             raise ValueError("Expected transform to be 'identity', 'string',"
-                             "'label' or 'onehot' got {}".format(transform))
+                             "'label', 'normalize_unbounded', 'normalize', or 'onehot' got {}".format(transform))
         if transform == "onehot":
             self.transformer = CategoricalEncoder()
             self.transformer.fit(self.categories)
