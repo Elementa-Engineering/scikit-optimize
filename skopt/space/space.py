@@ -633,7 +633,7 @@ class Categorical(Dimension):
 
         """
         self.transform_ = transform
-        if transform not in ["identity", "onehot", "string", "normalize",
+        if transform not in ["identity", "onehot", "string", "normalize", "normalize_unbounded"
                              "label"]:
             raise ValueError("Expected transform to be 'identity', 'string',"
                              "'label' or 'onehot' got {}".format(transform))
