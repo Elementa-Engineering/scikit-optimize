@@ -118,3 +118,12 @@ def test_normalize():
     assert_raises(ValueError, transformer.transform, 1.0 - 1e-6)
     assert_raises(ValueError, transformer.inverse_transform, 1. + 1e-6)
     assert_raises(ValueError, transformer.transform, 0. - 1e-6)
+
+
+@pytest.mark.fast_test
+def test_normalize_unbounded():
+    transformer = Normalize(1, 100, is_int=False, unbounded=True)
+    assert transformer.transform(100.) == 1.0
+    assert transformer.transform(101.) == pytest.approx(1.01, abs=0.001)
+    assert transformer.transform(1.) == 0.0
+    assert transformer.transform(0.) == pytest.approx(-0.01, abs=0.001)
